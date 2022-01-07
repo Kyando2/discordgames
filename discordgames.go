@@ -1,1 +1,1 @@
-package discordgames
+package main
