@@ -1,17 +1,18 @@
 package main
 
-// func apply[I interface{}, O interface{}](vs []I, f func(I) O) []O {
-//    vsm := make([]O, len(vs))
-//    for i, v := range vs {
-//        vsm[i] = f(v)
-//    }
-//    return vsm
-//}
-
-func apply(vs []interface{}, f func(interface{}) interface{}) interface{} {
-	vsm := make([]interface{}, len(vs))
-	for i, v := range vs {
-		vsm[i] = f(v)
+func contains(l []int, s int) bool {
+	for _, v := range l {
+		if s == v {
+			return true
+		}
 	}
-	return vsm
+	return false
+}
+
+type HasID interface {
+	getID() int
+}
+
+type IDArr interface {
+	getIDs() []int
 }

@@ -6,20 +6,12 @@ func (user User) Save() (err error) {
 	return
 }
 
-func IDs(vs []Item) []int {
-	vsm := make([]int, len(vs))
-	for i, v := range vs {
-		vsm[i] = v.ID
-	}
-	return vsm
+func (user User) Items() Inventory {
+	return user.data.inv
 }
 
+// Shortcut function for contains(user.Inv().getIDs(), i.ID)
+// returns whether the receiver user's inventory contains the item.
 func (user User) Has(i Item) bool {
-	ids := IDs(user.data.inv.Data)
-	m := make(map[int]struct{})
-	for _, data := range ids {
-		m[data] = struct{}{}
-	}
-	_, e := m[i.ID]
-	return e
+	return contains(user.Items().getIDs(), i.ID)
 }

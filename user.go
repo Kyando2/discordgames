@@ -74,3 +74,15 @@ func saveUserData(id string, u userData) (err error) {
 	}
 	return
 }
+
+func (i Item) getID() int {
+	return i.ID
+}
+
+func (vs Inventory) getIDs() (m []int) {
+	m = make([]int, len(vs.Data))
+	for _, v := range vs.Data {
+		m = append(m, v.getID())
+	}
+	return
+}
