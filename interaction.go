@@ -10,12 +10,3 @@ func (in *InThread) Answer(v int) Answer {
 func (ch *Chain) Push(in *InThread) {
 	ch.Q <- in
 }
-
-// Probably require a discordgo session
-func (ch *Chain) Work() {
-	go func(ch chan *InThread) {
-		// tohandle := <-ch
-		// handle `tohandle`
-		// using discord
-	}(ch.Q)
-}

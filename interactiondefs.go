@@ -38,6 +38,10 @@ type Chain struct {
 
 // Compendium type object of
 // all possible interactions.
-type Possibilities struct {
-	data map[int]Interact
+var possibilities map[int]Interact
+var threadcounter int
+
+func init() {
+	threadcounter = 0
+	// handle generating possibilities from file
 }
