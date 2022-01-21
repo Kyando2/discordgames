@@ -1,6 +1,6 @@
 package main
 
-func (in *Interact) Answer(v int) Answer {
+func (in *InThread) Answer(v int) Answer {
 	return Answer{
 		To:    in,
 		Value: v,
