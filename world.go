@@ -33,15 +33,10 @@ func (w World) At(x, y int) (i int) {
 	return
 }
 
+// Save the world map into the database at data/wrld.db
 func carveMap(m map[position]tileType) (err error) {
 	db, _ := sql.Open("sqlite3", "data/wrld.db")
-	insertPositionStmt := `INSERT INTO worldmap(x, y, type) VALUES (?, ?, ?)`
-	var stmt *sql.Stmt
-	if stmt, err = db.Prepare(insertPositionStmt); err != nil {
-		log.Fatalf("Error preparing world map insert statement: %s", err)
-		return
-	}
-	defer stmt.Close()
+	// Insert into the map through multiple batches
 	valueStrings := make([]string, 0, len(m))
 	valueArgs := make([]interface{}, 0, len(m)*3)
 	i := 0
